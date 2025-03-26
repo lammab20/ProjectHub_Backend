@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import {IUser} from "../model/IUser";
+import {isTokenBlacklisted} from "../helper/TokenBlacklist";
 
 dotenv.config();
 
@@ -18,11 +19,13 @@ export function authenticate (req: AuthRequest, res: Response, next: NextFunctio
         res.status(403).json({ message: "No token provided" });
         return;
     }
+    if (isTokenBlacklisted(authHeader)) {
+        res.status(401).json({ message: "Token is blacklisted" });
+        return;
+    }
 
-    const token = authHeader.split(" ")[1]; // "Bearer token"
+    const token = authHeader.split(" ")[1];
     try {
-        // Verifiziert den JWT und extrahiert die Benutzerinformationen
-
         req.user = jwt.verify(token, SECRET_KEY) as IUser; // Der Token wird hier in das IUser-Objekt umgewandelt
         next();
     } catch (err) {

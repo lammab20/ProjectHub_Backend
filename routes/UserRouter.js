@@ -9,19 +9,21 @@ const authMiddleware_1 = require("../middleware/authMiddleware");
 const router = express_1.default.Router();
 // Geschützte Route: Eigene Daten abrufen
 router.get("/myData", authMiddleware_1.authenticate, (req, res) => {
-    const user = UserMock_1.mockUsers.find((u) => u.id === req.user.id);
+    const user = UserMock_1.mockUsers.find((u) => { var _a; return u.id === ((_a = req.user) === null || _a === void 0 ? void 0 : _a.id); });
     if (!user) {
-        res.sendStatus(404).json({ message: "User not found" });
+        res.status(404).json({ message: "User not found" });
         return;
     }
     res.json(user);
 });
 // Alle User abrufen (nur für Admins)
-router.get("/allUsers", authMiddleware_1.authenticate, (req, res) => {
-    if (req.user.role !== "ADMIN") {
-        res.sendStatus(403).json({ message: "Forbidden" });
+router.get("/allUsers", authMiddleware_1.authenticate, (req, res, next) => {
+    var _a;
+    if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) !== "ADMIN") {
+        res.status(403).json({ message: "Forbidden" });
         return;
     }
     res.json(UserMock_1.mockUsers);
 });
-exports.default = router;
+//export default router;
+module.exports = router;
