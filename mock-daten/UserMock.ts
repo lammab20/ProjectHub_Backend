@@ -6,7 +6,7 @@ export const mockUsers: IUser[] = [
         firstname: "Max",
         lastname: "Mustermann",
         email: "max.mustermann@example.com",
-        password: "password123",
+            password: "password123",
         role: "ADMIN",
         likedProjects: [101, 102, 103],
     },
