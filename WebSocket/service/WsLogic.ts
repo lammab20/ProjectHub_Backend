@@ -20,7 +20,7 @@ export class WsLogic{
     handleLogin(user: IUserWS, socket: WebSocket) {
         this.wsHandler.login(socket, user);
         this.wsHandler.sendMessage(socket, {type: "LOGIN", payload: user}); //ans frontend dass er jetzt eingefügt
-        this.handleUserList();
+        //this.handleUserList();
 
         let payload;
 
@@ -37,7 +37,7 @@ export class WsLogic{
     }
 
     handleUserList() {
-        //this.wsHandler.sendToAll({type: "USER_LIST", payload: this.wsHandler.getUsers()});
+        this.wsHandler.sendToAll({type: "USER_LIST", payload: this.wsHandler.getUsers()});
     }
 
     handleLogout(socket: WebSocket) {

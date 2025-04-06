@@ -12,6 +12,8 @@ export class WSHandler {
         }
 
         setupHandler(socket: WebSocket) {
+
+
                 socket.on("message", (msg:string) => {
                         Dispatcher.dispatch(JSON.parse(msg), socket);
                 })
@@ -22,9 +24,9 @@ export class WSHandler {
         }
 
         sendToAll(message: IMessage, role?: TUser) {
-                this.connections.forEach((user, socket) => {
-                        this.sendMessage(socket, message);
-                })
+                for (const socket of this.connections.keys()) {
+                        socket.send(JSON.stringify(message))
+                }
         }
 
         sendMessage(socket: WebSocket, message: IMessage) {
@@ -35,6 +37,7 @@ export class WSHandler {
         }
 
         login(socket: WebSocket, user: IUserWS | undefined) {
+                console.log('SOME SHIT HAPPENED HERE!');
                 if(socket.readyState === WebSocket.OPEN){
                         this.connections.set(socket, user);
                 }
