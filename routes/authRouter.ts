@@ -7,7 +7,7 @@ import {addToBlacklist} from "../helper/TokenBlacklist";
 dotenv.config();
 
 const router = express.Router();
-const SECRET_KEY = process.env.JWT_SECRET || "supersecret";
+const SECRET_KEY = process.env.JWT_SECRET || "tungtungtungsahurSuperIdolde%ch4Ulong";
 
 // POST-Route für Login
 router.post("/login", (req: Request, res: Response) => {

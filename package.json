@@ -14,7 +14,9 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "next": "^15.2.4",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "websocket": "^1.0.35",
+    "ws": "^8.18.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -22,6 +24,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.13.13",
     "@types/socket.io": "^3.0.1",
+    "@types/ws": "^8.18.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   }
