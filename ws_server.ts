@@ -1,3 +1,4 @@
-import {WebSocketService} from "./WebSocket/WebSocketService";
+import { WebSocketService } from "./WebSocket/WebSocketService";
 
-new WebSocketService();
+console.log("📦 Starte WebSocketService...");
+new WebSocketService(8080);
